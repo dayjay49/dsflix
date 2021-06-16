@@ -7,4 +7,4 @@ Learning React and ES6 by building a Movie Discovery
 - [ ] Home
 - [ ] TV Shows
 - [ ] Search
-:radio_button: Detail
+- [ ] Detail
