@@ -1,4 +1,4 @@
-// const home = () => "Home";
+const Home = () => "Home";
 
-// export default home;
-export default () => "Home";
+export default Home;
+// export default () => "Home";

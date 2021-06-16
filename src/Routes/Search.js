@@ -1,4 +1,4 @@
-// const Search = () => "Search";
+const Search = () => "Search";
 
-// export default home;
-export default () => "Search";
+export default Search;
+// export default () => "Search";
