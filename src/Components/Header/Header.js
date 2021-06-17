@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./Header.module.css";
 
-const Headers = () => (
+const Header = () => (
     <header>
-        <ul>
+        <ul className={styles.navList}>
             <li>
                 <a href="/">Movies</a>
             </li>
@@ -15,4 +16,4 @@ const Headers = () => (
         </ul>
     </header>
 )
-export default Headers;
+export default Header;
