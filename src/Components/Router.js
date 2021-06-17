@@ -3,9 +3,12 @@ import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom
 import Home from "../Routes/Home";
 import Search from "../Routes/Search";
 import TV from "../Routes/TV";
+import MyHeader from "./Header";
 
 const MyRouter = () => (
     <Router>
+      <>
+        <MyHeader/>
         <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/tv" exact component={TV} />
@@ -13,6 +16,7 @@ const MyRouter = () => (
             <Route path="/search" component={Search} />
             <Redirect from="*" to="/"/>
         </Switch>
+      </>
     </Router>
 );
 export default MyRouter
