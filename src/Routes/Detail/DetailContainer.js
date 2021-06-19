@@ -43,7 +43,7 @@ class DetailContainer extends React.Component{
                     data: result
                 } = await this.getShowDetail(parsedID));
             } 
-            console.log("Result is: ", result);
+            // console.log("Result is: ", result);
         } catch {
             this.setState({
                 error: "Can't find anything."
@@ -57,7 +57,7 @@ class DetailContainer extends React.Component{
     }
 
     render() {
-        console.log("The state is: ", this.state);
+        // console.log("The state is: ", this.state);
         const { result, error, loading } = this.state;
         return (
             <DetailPresenter 
