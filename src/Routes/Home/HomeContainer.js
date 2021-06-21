@@ -27,7 +27,6 @@ class HomeContainer extends React.Component{
             const {
                 data: { results: popular}
             } = await this.getPopular();
-            
             // JS knows that nowPlaying:nowPlaying, upcoming:upcoming, popular:popular
             this.setState({
                 nowPlaying,

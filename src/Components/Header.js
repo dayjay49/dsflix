@@ -52,19 +52,3 @@ const MyHeader = ({ location: { pathname } }) => (
     </Header>
 );
 export default withRouter(MyHeader);
-
-// export default withRouter((props) => (
-//     <Header>
-//         <List>
-//             <Item current={false}>
-//                 <SLink to="/">Movies</SLink>
-//             </Item>
-//             <Item current={true}>
-//                 <SLink to="/tv">TV</SLink>
-//             </Item>
-//             <Item current={false}>
-//                 <SLink to="/Search">Search</SLink>
-//             </Item>
-//         </List>
-//     </Header>
-// ));
