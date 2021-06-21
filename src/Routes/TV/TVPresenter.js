@@ -21,7 +21,7 @@ const TVPresenter = ({topRated, popular, airingToday, loading, error}) =>
                     <Poster 
                         key={show.id}
                         id={show.id}
-                        title={show.original_title}
+                        title={show.original_name}
                         imageUrl={show.poster_path}
                         rating={show.vote_average}
                         year={show.first_air_date && show.first_air_date.substring(0, 4)}
