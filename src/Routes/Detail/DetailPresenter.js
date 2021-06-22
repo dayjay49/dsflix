@@ -31,15 +31,16 @@ const Content = styled.div`
     width: 100%;
     height: 100%;
     position: relative;
+    margin-top: 30px;
     z-index: 1;
 `;
 
 const Cover = styled.div`
-    width: 30%;
+    width: 40%;
     background-image: url(${props => props.bgImage});
     background-position: center center;
     background-size: cover;
-    height: 100%;
+    height: 75%;
     border-radius: 5px;
 `;
 
@@ -61,6 +62,10 @@ const Item = styled.span``;
 
 const Divider = styled.span`
     margin: 0 10px;
+`;
+
+const SAnchor = styled.a`
+    margin-bottom: 10px;
 `;
 
 const Overview = styled.p`
@@ -103,7 +108,13 @@ const DetailPresenter = ({result, loading, error}) => (
                     <Item>{result.runtime ? result.runtime : result.episode_run_time[0]} min</Item>
                     <Divider>⚪</Divider>
                     <Item>{result.genres && result.genres.map((genre, index) => index === result.genres.length - 1 ? genre.name : `${genre.name} / `)}</Item>
+                    <Divider>⚪</Divider>
+                    {result.imdb_id 
+                        ? <SAnchor href={`https://www.imdb.com/title/${result.imdb_id}`}>IMDB</SAnchor> 
+                        : <SAnchor href={`${result.homepage}`}>Official Site</SAnchor>
+                    }
                 </ItemContainer>
+                
                 <Overview>{result.overview}</Overview>
             </Data>
         </Content>
