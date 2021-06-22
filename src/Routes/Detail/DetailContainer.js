@@ -15,7 +15,6 @@ class DetailContainer extends React.Component{
             isMovie: pathname.includes("/movie/")
         }
     }
-
     getMovieDetail = (id) => MoviesApi.movieDetail(id);
     getShowDetail = (id) => TVApi.showDetail(id);
 
