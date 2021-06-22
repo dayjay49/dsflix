@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Loader from "Components/Loader";
 import Section from "Components/Section";
 import Message from "Components/Message";
@@ -30,7 +31,11 @@ const SearchPresenter = ({
     error,
     updateTerm
 }) => (
+    <HelmetProvider>
     <Container>
+        <Helmet>
+            <title>Search | Dsflix</title>
+        </Helmet>
         <Form onSubmit={handleSubmit}>
             <Input 
                 placeholder="Search Movies or TV Shows..." 
@@ -39,9 +44,17 @@ const SearchPresenter = ({
             />
         </Form>
         {loading ? (
+            <>
+            <Helmet>
+                <title>Loading | Dsflix</title>
+            </Helmet>
             <Loader/> 
+            </>
         ) : (
         <>
+            <Helmet>
+                <title>Loading | Dsflix</title>
+            </Helmet>
             {movieResults && movieResults.length > 0 && (
                 <Section title="Movie Results">
                     {movieResults.map(movie => (
@@ -81,6 +94,7 @@ const SearchPresenter = ({
         </>
         )}
     </Container>
+    </HelmetProvider>
 );
 
 SearchPresenter.propTypes = {

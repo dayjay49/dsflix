@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
@@ -10,11 +11,20 @@ const Container = styled.div`
     padding: 20px 20px;
 `;
 
-const HomePresenter = ({nowPlaying, popular, upcoming, loading, error}) => 
-    loading ? (
-        <Loader />
+const HomePresenter = ({nowPlaying, popular, upcoming, loading, error}) => (
+    <HelmetProvider>
+    {loading ? (
+        <>
+        <Helmet>
+            <title>Movies | Dsflix</title>
+        </Helmet>
+        <Loader/> 
+        </>
     ) : (
     <Container>
+        <Helmet>
+            <title>Movies | Dsflix</title>
+        </Helmet>
         {nowPlaying && nowPlaying.length > 0 && (
             <Section title="Now Playing">
                 {nowPlaying.map(movie => (
@@ -61,7 +71,10 @@ const HomePresenter = ({nowPlaying, popular, upcoming, loading, error}) =>
             </Section>
         )}
         {error && <Message color="#e74c3c" text={error}/>}
-    </Container>);
+    </Container>)
+    }
+    </HelmetProvider>
+);
 
 HomePresenter.propTypes = {
     nowPlaying:PropTypes.array,

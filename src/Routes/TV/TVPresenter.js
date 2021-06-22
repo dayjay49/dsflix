@@ -1,20 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
 
 const Container = styled.div`
-    padding: 0px 20px;
+    padding: 20px;
 `;
 
-const TVPresenter = ({topRated, popular, airingToday, loading, error}) => 
-    loading ? (
+const TVPresenter = ({topRated, popular, airingToday, loading, error}) => (
+    <HelmetProvider>
+    {loading ? (
+        <>
+        <Helmet>
+            <title>TV Shows | Dsflix</title>
+        </Helmet>
         <Loader/> 
+        </>
     ) : (
     <Container>
+        <Helmet>
+            <title>TV Shows | Dsflix</title>
+        </Helmet>
         {topRated && topRated.length > 0 && (
             <Section title="Top Rated">
                 {topRated.map(show => (
@@ -58,7 +68,10 @@ const TVPresenter = ({topRated, popular, airingToday, loading, error}) =>
             </Section>
         )}
         {error && <Message color="#e74c3c" text={error}/>}
-    </Container>);
+    </Container>)
+    }
+    </HelmetProvider>
+);
 
 TVPresenter.propTypes = {
     topRated:PropTypes.array,

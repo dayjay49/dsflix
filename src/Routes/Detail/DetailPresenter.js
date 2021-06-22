@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Loader from "Components/Loader";
+import Message from "Components/Message";
 
 const Container = styled.div`
     height: calc(100vh - 50px);
@@ -69,33 +71,45 @@ const Overview = styled.p`
 `;
 
 const DetailPresenter = ({result, loading, error}) => (
-    loading ? <Loader/> : (
-        <Container>
-            <Backdrop 
-                bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+    <HelmetProvider>
+    {loading ? (
+        <>
+        <Helmet>
+            <title>Loading | Dsflix</title>
+        </Helmet>
+        <Loader/> 
+        </>
+    ) : (
+        error ? <Message color="#e74c3c" text={error}/> : <Container>
+        <Helmet>
+            <title>{result.original_title ? result.original_title : result.original_name} | Dsflix</title>
+        </Helmet>
+        <Backdrop 
+            bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+        />
+        <Content>
+            <Cover 
+                bgImage={
+                    result.poster_path 
+                        ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` 
+                        : require("../../assets/noPosterSmall.png")
+                }
             />
-            <Content>
-                <Cover 
-                    bgImage={
-                        result.poster_path 
-                            ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` 
-                            : require("../../assets/noPosterSmall.png")
-                    }
-                />
-                <Data>
-                    <Title>{result.original_title ? result.original_title : result.original_name}</Title>
-                    <ItemContainer>
-                        <Item>{result.release_date ? result.release_date.substring(0,4) : result.first_air_date.substring(0,4)}</Item>
-                        <Divider>⚪</Divider>
-                        <Item>{result.runtime ? result.runtime : result.episode_run_time[0]} min</Item>
-                        <Divider>⚪</Divider>
-                        <Item>{result.genres && result.genres.map((genre, index) => index === result.genres.length - 1 ? genre.name : `${genre.name} / `)}</Item>
-                    </ItemContainer>
-                    <Overview>{result.overview}</Overview>
-                </Data>
-            </Content>
-        </Container>
-    )
+            <Data>
+                <Title>{result.original_title ? result.original_title : result.original_name}</Title>
+                <ItemContainer>
+                    <Item>{result.release_date ? result.release_date.substring(0,4) : result.first_air_date.substring(0,4)}</Item>
+                    <Divider>⚪</Divider>
+                    <Item>{result.runtime ? result.runtime : result.episode_run_time[0]} min</Item>
+                    <Divider>⚪</Divider>
+                    <Item>{result.genres && result.genres.map((genre, index) => index === result.genres.length - 1 ? genre.name : `${genre.name} / `)}</Item>
+                </ItemContainer>
+                <Overview>{result.overview}</Overview>
+            </Data>
+        </Content>
+    </Container>
+    )}
+    </HelmetProvider>
 );
 
 DetailPresenter.propTypes = {
